@@ -19,6 +19,14 @@
 
 @implementation CardGameViewController
 
+- (void) setCardButtons:(NSArray *)cardButtons {
+  _cardButtons = cardButtons;
+  for (UIButton *cardButton in cardButtons) {
+    [cardButton setTitle:[[self.deck drawRandomCard] contents] forState:UIControlStateSelected];
+  }
+  
+}
+
 - (Deck*) deck {
   if (!_deck) _deck = [[PlayingCardDeck alloc] init];
   return _deck;
@@ -30,9 +38,6 @@
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
-  if (!sender.selected) {
-    [sender setTitle:[[self.deck drawRandomCard] contents] forState:UIControlStateSelected];
-  }
   sender.selected = !sender.isSelected;
   self.flipsCount++;
 }
