@@ -16,6 +16,8 @@
 @property (strong, nonatomic) CardMatchingGame* game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastActionLabel;
+@property (strong, nonatomic) NSString* lastAction;
 
 @end
 
@@ -49,8 +51,14 @@
   self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipsCount];
 }
 
+- (void) setLastAction:(NSString *)lastAction {
+  _lastAction = lastAction;
+  self.lastActionLabel.text = _lastAction;
+}
+
 - (IBAction)flipCard:(UIButton *)sender {
-  [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+  NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
+  self.lastAction = [self.game flipCardAtIndex:cardIndex];
   [self updateUI];
   self.flipsCount++;
 }
