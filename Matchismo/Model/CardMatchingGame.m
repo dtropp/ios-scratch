@@ -17,7 +17,8 @@
 @implementation CardMatchingGame
 
 - (id) initWithCardCount: (NSUInteger) cardCount
-               usingDeck: (Deck*) deck {
+               usingDeck: (Deck*) deck
+                matching:(NSString*)numberOfCards {
   self = [super init];
   if (self) {
     for (NSUInteger index = 0; index < cardCount; index++) {
