@@ -23,6 +23,13 @@
 
 @implementation CardGameViewController
 
+- (IBAction)dealNewGame:(id)sender {
+  _game = nil;
+  self.flipsCount = 0;
+  self.lastAction = @"New game!";
+  [self updateUI];
+}
+
 - (void) setCardButtons:(NSArray *)cardButtons {
   _cardButtons = cardButtons;
   [self updateUI];
