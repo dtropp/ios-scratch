@@ -28,9 +28,11 @@
 - (void)updateUI {
   for (UIButton *cardButton in self.cardButtons) {
     Card* card = [self.game cardAtIndex:[_cardButtons indexOfObject:cardButton]];
+    [cardButton setTitle:card.contents forState:UIControlStateSelected];
     [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
     cardButton.selected = card.isFaceUp;
     cardButton.enabled = !card.isUnplayable;
+    cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
   }
 }
 
