@@ -18,21 +18,43 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastActionLabel;
 @property (strong, nonatomic) NSString* lastAction;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameTypeControl;
+@property (strong, nonatomic) NSString* gameType;
 
 @end
 
 @implementation CardGameViewController
 
-- (IBAction)dealNewGame:(id)sender {
+- (void)viewDidLoad {
+  [self dealNewGame];
+}
+
+- (IBAction)gameTypeChosen:(UISegmentedControl *)sender {
+  self.gameType = [sender titleForSegmentAtIndex:[sender selectedSegmentIndex]];
+}
+
+- (IBAction)dealNewGame {
   _game = nil;
   self.flipsCount = 0;
-  self.lastAction = @"New game!";
+  self.lastAction = [NSString stringWithFormat:@"New game matching %@ cards!", self.gameType];
+  self.gameTypeControl.enabled = YES;
   [self updateUI];
+}
+
+- (void) setGameType:(NSString*)gameType {
+  if ([@[@"2", @"3"] containsObject:gameType]) {
+    _gameType = gameType;
+    [self dealNewGame];
+  }
+}
+
+- (void) setGameTypeControl:(UISegmentedControl *)gameTypeControl {
+  _gameTypeControl = gameTypeControl;
+  [self gameTypeChosen:self.gameTypeControl];
 }
 
 - (void) setCardButtons:(NSArray *)cardButtons {
   _cardButtons = cardButtons;
-  [self updateUI];
 }
 
 - (void)updateUI {
@@ -68,6 +90,7 @@
   self.lastAction = [self.game flipCardAtIndex:cardIndex];
   [self updateUI];
   self.flipsCount++;
+  self.gameTypeControl.enabled = NO;
 }
 
 
