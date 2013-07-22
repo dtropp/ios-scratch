@@ -7,7 +7,7 @@
 //
 
 #import "CardGameViewController.h"
-#import "CardMatchingGame.h"
+#import "ThreeCardMatchingGame.h"
 #import "PlayingCardDeck.h"
 
 @interface CardGameViewController ()
@@ -70,8 +70,15 @@
 }
 
 - (CardMatchingGame*) game {
-  if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                        usingDeck:[[PlayingCardDeck alloc] init]];
+  if (!_game) {
+    if ([self.gameType isEqualToString:@"2"]) {
+      _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                usingDeck:[[PlayingCardDeck alloc] init]];
+    } else {
+      _game = [[ThreeCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                usingDeck:[[PlayingCardDeck alloc] init]];
+    }
+  }
   return _game;
 }
 
