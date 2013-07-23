@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lastActionLabel;
 @property (strong, nonatomic) NSString* lastAction;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameTypeControl;
-@property (strong, nonatomic) NSString* gameType;
+@property (nonatomic) NSUInteger gameType;
 
 @end
 
@@ -30,19 +30,19 @@
 }
 
 - (IBAction)gameTypeChosen:(UISegmentedControl *)sender {
-  self.gameType = [sender titleForSegmentAtIndex:[sender selectedSegmentIndex]];
+  self.gameType = [[sender titleForSegmentAtIndex:[sender selectedSegmentIndex]] integerValue];
 }
 
 - (IBAction)dealNewGame {
   _game = nil;
   self.flipsCount = 0;
-  self.lastAction = [NSString stringWithFormat:@"New game matching %@ cards!", self.gameType];
+  self.lastAction = [NSString stringWithFormat:@"New game matching %d cards!", self.gameType];
   self.gameTypeControl.enabled = YES;
   [self updateUI];
 }
 
-- (void) setGameType:(NSString*)gameType {
-  if ([@[@"2", @"3"] containsObject:gameType]) {
+- (void) setGameType:(NSUInteger)gameType {
+  if (gameType == 2 || gameType == 3) {
     _gameType = gameType;
     [self dealNewGame];
   }
@@ -71,9 +71,10 @@
 
 - (CardMatchingGame*) game {
   if (!_game) {
-    _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                              usingDeck:[[PlayingCardDeck alloc] init]
-                                               matching:self.gameType];
+    _game = [[CardMatchingGame alloc]
+             initWithCardCount:[self.cardButtons count]
+                     usingDeck:[[PlayingCardDeck alloc] init]
+             withCardsPerMatch:self.gameType];
   }
   return _game;
 }

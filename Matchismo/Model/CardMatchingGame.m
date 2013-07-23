@@ -11,6 +11,7 @@
 @interface CardMatchingGame()
 @property (strong, nonatomic) NSMutableArray* cards;
 @property (nonatomic, readwrite) int score;
+@property (nonatomic) NSUInteger cardsPerMatch;
 
 @end
 
@@ -18,9 +19,10 @@
 
 - (id) initWithCardCount: (NSUInteger) cardCount
                usingDeck: (Deck*) deck
-                matching:(NSString*)numberOfCards {
+                withCardsPerMatch:(NSUInteger)count {
   self = [super init];
   if (self) {
+    self.cardsPerMatch = count;
     for (NSUInteger index = 0; index < cardCount; index++) {
       Card* card = [deck drawRandomCard];
       if (card) {
@@ -38,29 +40,45 @@
 #define MATCH_BONUS 4
 #define MISMATCH_PENALTY 2
 
+- (NSArray*) cardsAvailableToMatch {
+  NSMutableArray* matchable = [[NSMutableArray alloc] init];
+  for (Card* card in self.cards) {
+    if (card.isFaceUp && !card.isUnplayable) [matchable addObject:card];
+  }
+  return matchable;
+}
+
 - (NSString*) flipCardAtIndex: (NSUInteger) index {
   Card* card = [self cardAtIndex:index];
   NSString* actionMessage = nil;
   
   if (!card.isUnplayable) {
     if (!card.isFaceUp) {
-      for (Card* otherCard in self.cards) {
-        if (otherCard.isFaceUp && !otherCard.isUnplayable) {
-          int matchScore = [otherCard match:@[card]];
-          int flipScore = 0;
-          if (matchScore) {
+      NSArray* matchableCards = [self cardsAvailableToMatch];
+      if ( ([matchableCards count]+1) == self.cardsPerMatch) {
+        int matchScore = [card match:matchableCards];
+        int flipScore = 0;
+        if (matchScore) {
+          for (Card* otherCard in matchableCards) {
             otherCard.unplayable = YES;
-            card.unplayable = YES;
-            flipScore = matchScore * MATCH_BONUS;
-            actionMessage = [NSString stringWithFormat:@"Matched %@ & %@ for %d points!", card.contents, otherCard.contents, flipScore];
-          } else {
-            otherCard.faceUp = NO;
-            flipScore = -(MISMATCH_PENALTY);
-            actionMessage = [NSString stringWithFormat:@"No match for %@ & %@! Penalty of %d points!", card.contents, otherCard.contents, flipScore];
           }
-
-          self.score += flipScore;
+          card.unplayable = YES;
+          flipScore = matchScore * MATCH_BONUS;
+          actionMessage = [NSString stringWithFormat:@"Matched %@ & %@ for %d points!",
+                           card.contents,
+                           [matchableCards componentsJoinedByString:@" & "],
+                           flipScore];
+        } else {
+          for (Card* otherCard in matchableCards) {
+            otherCard.faceUp = NO;
+          }
+          flipScore = -(MISMATCH_PENALTY);
+          actionMessage = [NSString stringWithFormat:@"No match for %@ & %@! Penalty of %d points!",
+                           card.contents,
+                           [matchableCards componentsJoinedByString:@" & "],
+                           flipScore];
         }
+        self.score += flipScore;
       }
       self.score -= FLIP_COST;
       if (!actionMessage) {

@@ -13,7 +13,7 @@
 
 - (id) initWithCardCount: (NSUInteger) cardCount
                usingDeck: (Deck*) deck
-                matching:(NSString*)numberOfCards;
+       withCardsPerMatch:(NSUInteger)numberOfCards;
 
 - (NSString*) flipCardAtIndex: (NSUInteger) index;
 
