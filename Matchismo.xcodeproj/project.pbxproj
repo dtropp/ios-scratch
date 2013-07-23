@@ -23,6 +23,7 @@
 		37B549CE179C9B870091BBCD /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B549C9179C9B870091BBCD /* PlayingCard.m */; };
 		37B549CF179C9B870091BBCD /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B549CB179C9B870091BBCD /* PlayingCardDeck.m */; };
 		37B549D2179CBA010091BBCD /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B549D1179CBA010091BBCD /* CardMatchingGame.m */; };
+		37B549D9179F36BA0091BBCD /* cardback.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B549D8179F36BA0091BBCD /* cardback.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		37B549CB179C9B870091BBCD /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		37B549D0179CBA010091BBCD /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		37B549D1179CBA010091BBCD /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
+		37B549D8179F36BA0091BBCD /* cardback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardback.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				37B549A8179C98BB0091BBCD /* Matchismo-Info.plist */,
+				37B549D8179F36BA0091BBCD /* cardback.png */,
 				37B549A9179C98BB0091BBCD /* InfoPlist.strings */,
 				37B549AC179C98BB0091BBCD /* main.m */,
 				37B549AE179C98BB0091BBCD /* Matchismo-Prefix.pch */,
@@ -197,6 +200,7 @@
 				37B549B5179C98BB0091BBCD /* Default@2x.png in Resources */,
 				37B549B7179C98BB0091BBCD /* Default-568h@2x.png in Resources */,
 				37B549BA179C98BB0091BBCD /* MainStoryboard.storyboard in Resources */,
+				37B549D9179F36BA0091BBCD /* cardback.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

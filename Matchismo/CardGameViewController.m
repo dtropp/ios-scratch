@@ -60,8 +60,14 @@
 - (void)updateUI {
   for (UIButton *cardButton in self.cardButtons) {
     Card* card = [self.game cardAtIndex:[_cardButtons indexOfObject:cardButton]];
-    [cardButton setTitle:card.contents forState:UIControlStateSelected];
-    [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+    if (card.isFaceUp) {
+      //Normal config is used by all other states as default (ie. selected and disabled)
+      [cardButton setImage:nil forState:UIControlStateNormal];
+      [cardButton setTitle:card.contents forState:UIControlStateNormal];
+    } else {
+      [cardButton setImage:[UIImage imageNamed:@"cardback.png"] forState:UIControlStateNormal];
+      [cardButton setTitle:nil forState:UIControlStateNormal];
+    }
     cardButton.selected = card.isFaceUp;
     cardButton.enabled = !card.isUnplayable;
     cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
