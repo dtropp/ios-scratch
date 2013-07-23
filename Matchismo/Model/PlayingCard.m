@@ -15,12 +15,13 @@
   int score = 0;
   if (otherCards.count == 1 || otherCards.count == 2) {
     for (PlayingCard* otherCard in otherCards) {
-      if ([otherCard.suit isEqualToString:self.suit]) score += 1;
-      if (otherCard.rank == self.rank) score += 4;
+      if ([otherCard.suit isEqualToString:self.suit]) score += 2;
+      if (otherCard.rank == self.rank) score += 6;
     }
   }
 
-  return score * score;
+  NSLog(@"Score is %d / %d = %d", score, otherCards.count, (score / otherCards.count));
+  return score / otherCards.count;
 }
 
 - (NSString*) contents {
