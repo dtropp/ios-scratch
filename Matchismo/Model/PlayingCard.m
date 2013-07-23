@@ -13,11 +13,17 @@
 
 - (int) match: (NSArray*)otherCards {
   int score = 0;
+  //Match other cards to this card
   if (otherCards.count == 1 || otherCards.count == 2) {
     for (PlayingCard* otherCard in otherCards) {
       if ([otherCard.suit isEqualToString:self.suit]) score += 2;
       if (otherCard.rank == self.rank) score += 6;
     }
+  }
+  //Match other cards to each other
+  if (otherCards.count == 2) {
+    if ([[otherCards[0] suit] isEqualToString:[otherCards[1] suit]]) score += 2;
+    if ([otherCards[0] rank] == [otherCards[1] rank]) score += 6;
   }
 
   NSLog(@"Score is %d / %d = %d", score, otherCards.count, (score / otherCards.count));
