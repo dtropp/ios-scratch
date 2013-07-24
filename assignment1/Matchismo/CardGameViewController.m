@@ -20,10 +20,17 @@
 @property (strong, nonatomic) NSString* lastAction;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameTypeControl;
 @property (nonatomic) NSUInteger gameType;
+@property (strong, nonatomic) NSMutableArray *actionHistory;
+@property (weak, nonatomic) IBOutlet UISlider *historySlider;
 
 @end
 
 @implementation CardGameViewController
+- (IBAction)slideThroughHistory:(UISlider *)sender {
+  int index = ([self.actionHistory count] - 1) * sender.value;
+  self.lastActionLabel.alpha = 0.5;
+  self.lastActionLabel.text = self.actionHistory[index];
+}
 
 - (void)viewDidLoad {
   [self dealNewGame];
@@ -39,6 +46,11 @@
   self.lastAction = [NSString stringWithFormat:@"New game matching %d cards!", self.gameType];
   self.gameTypeControl.enabled = YES;
   [self updateUI];
+}
+
+- (NSMutableArray*) actionHistory {
+  if (!_actionHistory) _actionHistory = [[NSMutableArray alloc] init];
+  return _actionHistory;
 }
 
 - (void) setGameType:(NSUInteger)gameType {
@@ -92,11 +104,14 @@
 
 - (void) setLastAction:(NSString *)lastAction {
   _lastAction = lastAction;
+  [self.actionHistory addObject:lastAction];
+  self.lastActionLabel.alpha = 1.0;
   self.lastActionLabel.text = _lastAction;
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
   NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
+  self.historySlider.value = 1;
   self.lastAction = [self.game flipCardAtIndex:cardIndex];
   [self updateUI];
   self.flipsCount++;
