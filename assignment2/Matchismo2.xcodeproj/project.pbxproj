@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3762201117A7A6650097F65E /* Princess Square.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3762201017A7A6650097F65E /* Princess Square.gif */; };
 		37B549A1179C98BB0091BBCD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B549A0179C98BB0091BBCD /* UIKit.framework */; };
 		37B549A3179C98BB0091BBCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B549A2179C98BB0091BBCD /* Foundation.framework */; };
 		37B549A5179C98BB0091BBCD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B549A4179C98BB0091BBCD /* CoreGraphics.framework */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		3762200E17A7A0760097F65E /* Matchismo2-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Matchismo2-Info.plist"; sourceTree = "<group>"; };
+		3762201017A7A6650097F65E /* Princess Square.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Princess Square.gif"; sourceTree = "<group>"; };
 		37B5499D179C98BB0091BBCD /* Matchismo2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37B549A0179C98BB0091BBCD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		37B549A2179C98BB0091BBCD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -114,6 +116,7 @@
 		37B549A7179C98BB0091BBCD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3762201017A7A6650097F65E /* Princess Square.gif */,
 				3762200E17A7A0760097F65E /* Matchismo2-Info.plist */,
 				37B549D8179F36BA0091BBCD /* cardback.png */,
 				37B549A9179C98BB0091BBCD /* InfoPlist.strings */,
@@ -201,6 +204,7 @@
 				37B549B7179C98BB0091BBCD /* Default-568h@2x.png in Resources */,
 				37B549BA179C98BB0091BBCD /* MainStoryboard.storyboard in Resources */,
 				37B549D9179F36BA0091BBCD /* cardback.png in Resources */,
+				3762201117A7A6650097F65E /* Princess Square.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
