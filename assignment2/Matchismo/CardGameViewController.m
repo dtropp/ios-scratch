@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
   [self dealNewGame];
+  NSLog(@"Got %d cards in outlet colletion", [self.cardButtons count]);
 }
 
 - (IBAction)dealNewGame {
