@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "37B5499C179C98BB0091BBCD"
-               BuildableName = "Matchismo.app"
+               BuildableName = "Matchismo2.app"
                BlueprintName = "Matchismo2"
                ReferencedContainer = "container:Matchismo2.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37B5499C179C98BB0091BBCD"
-            BuildableName = "Matchismo.app"
+            BuildableName = "Matchismo2.app"
             BlueprintName = "Matchismo2"
             ReferencedContainer = "container:Matchismo2.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37B5499C179C98BB0091BBCD"
-            BuildableName = "Matchismo.app"
+            BuildableName = "Matchismo2.app"
             BlueprintName = "Matchismo2"
             ReferencedContainer = "container:Matchismo2.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37B5499C179C98BB0091BBCD"
-            BuildableName = "Matchismo.app"
+            BuildableName = "Matchismo2.app"
             BlueprintName = "Matchismo2"
             ReferencedContainer = "container:Matchismo2.xcodeproj">
          </BuildableReference>

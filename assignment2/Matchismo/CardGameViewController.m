@@ -8,7 +8,7 @@
 
 #import "CardGameViewController.h"
 #import "CardMatchingGame.h"
-#import "PlayingCardDeck.h"
+#import "Deck.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
@@ -23,14 +23,19 @@
 
 @implementation CardGameViewController
 
+- (Deck *)newDeck {
+  return nil;
+}
+
 - (void)viewDidLoad {
   [self dealNewGame];
   NSLog(@"Got %d cards in outlet colletion", [self.cardButtons count]);
 }
 
 - (IBAction)dealNewGame {
-  _game = nil;
+  self.game = nil;
   self.flipsCount = 0;
+  //Different message per game TODO
   self.lastAction = [NSString stringWithFormat:@"New game matching 2 playing cards!"];
   [self updateUI];
 }
@@ -40,13 +45,16 @@
 }
 
 - (void)updateUI {
+  NSLog(@"UpdateUI");
   for (UIButton *cardButton in self.cardButtons) {
     Card* card = [self.game cardAtIndex:[_cardButtons indexOfObject:cardButton]];
     if (card.isFaceUp) {
+      NSLog(@"Card is face up: %@", card);
       //Normal config is used by all other states as default (ie. selected and disabled)
       [cardButton setImage:nil forState:UIControlStateNormal];
       [cardButton setTitle:card.contents forState:UIControlStateNormal];
     } else {
+      NSLog(@"Card is face down: %@", card);
       [cardButton setImage:[UIImage imageNamed:@"cardback.png"] forState:UIControlStateNormal];
       [cardButton setTitle:nil forState:UIControlStateNormal];
     }
@@ -59,9 +67,8 @@
 
 - (CardMatchingGame*) game {
   if (!_game) {
-    _game = [[CardMatchingGame alloc]
-             initWithCardCount:[self.cardButtons count]
-                     usingDeck:[[PlayingCardDeck alloc] init]];
+    NSLog(@"new game created");
+    _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self newDeck]];
   }
   return _game;
 }

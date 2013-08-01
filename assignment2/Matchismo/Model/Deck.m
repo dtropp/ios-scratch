@@ -42,4 +42,12 @@
   return randomCard;
 }
 
+- (NSString*) description {
+  NSString* cardContents = @"";
+  for (Card* card in self.cards) {
+    cardContents  = [cardContents stringByAppendingString:card.contents];
+  }
+  return cardContents;
+}
+
 @end
