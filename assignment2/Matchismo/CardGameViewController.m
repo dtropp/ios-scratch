@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lastActionLabel;
 @property (strong, nonatomic) NSString* lastAction;
 
+- (void)updateCard:(Card*) card onto:(UIButton*) cardButton;
+
 @end
 
 @implementation CardGameViewController
@@ -48,21 +50,25 @@
   NSLog(@"UpdateUI");
   for (UIButton *cardButton in self.cardButtons) {
     Card* card = [self.game cardAtIndex:[_cardButtons indexOfObject:cardButton]];
-    if (card.isFaceUp) {
-      NSLog(@"Card is face up: %@", card);
-      //Normal config is used by all other states as default (ie. selected and disabled)
-      [cardButton setImage:nil forState:UIControlStateNormal];
-      [cardButton setTitle:card.contents forState:UIControlStateNormal];
-    } else {
-      NSLog(@"Card is face down: %@", card);
-      [cardButton setImage:[UIImage imageNamed:@"cardback.png"] forState:UIControlStateNormal];
-      [cardButton setTitle:nil forState:UIControlStateNormal];
-    }
+    [self updateCard:card onto:cardButton];
     cardButton.selected = card.isFaceUp;
     cardButton.enabled = !card.isUnplayable;
     cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
   }
   self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+}
+
+- (void)updateCard:(Card*) card onto:(UIButton*) cardButton {
+  if (card.isFaceUp) {
+    NSLog(@"Card is face up: %@", card);
+    //Normal config is used by all other states as default (ie. selected and disabled)
+    [cardButton setImage:nil forState:UIControlStateNormal];
+    [cardButton setTitle:card.contents forState:UIControlStateNormal];
+  } else {
+    NSLog(@"Card is face down: %@", card);
+    [cardButton setImage:[UIImage imageNamed:@"cardback.png"] forState:UIControlStateNormal];
+    [cardButton setTitle:nil forState:UIControlStateNormal];
+  }
 }
 
 - (CardMatchingGame*) game {

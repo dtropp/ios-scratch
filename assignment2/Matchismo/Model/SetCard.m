@@ -9,41 +9,28 @@
 #import "SetCard.h"
 @interface SetCard()
 
-@property (strong, nonatomic) NSString* symbol;
-@property (nonatomic) NSUInteger count;
-@property (weak, nonatomic) UIColor* color;
-@property (nonatomic) float alpha;
-@property (strong, nonatomic) NSAttributedString* formattedContents;
-
 @end
 
 @implementation SetCard
 
 - (id)initWithSymbol:(NSString *)symbol
                count:(NSUInteger)count
-               color:(UIColor *)color
-             shading:(float)alpha {
+               color:(NSString *)color
+             shading:(NSString *)shading {
   self = [super init];
   
   if (self) {
-    self.symbol = symbol;
-    self.count = count;
-    self.color = color;
-    self.alpha = alpha;
-    
-    self.contents = symbol;
-    for (int i = 1; i < count; i++) {
-      self.contents = [self.contents stringByAppendingString:symbol];
-    }
-    
-    self.formattedContents =
-      [[NSAttributedString alloc] initWithString:self.contents
-                                      attributes:@{}];
-    NSLog(@"SetCard init with contents:%@ formattedContents:%@",
-          self.contents, self.formattedContents);
+    _symbol = symbol;
+    _count = count;
+    _color = color;
+    _shading = shading;
   }
   return self;
 }
 
+- (NSString *)contents {
+  NSArray* contents = @[self.shading, self.color, self.symbol];
+  return [NSString stringWithFormat:@"%d%@.", self.count, [contents componentsJoinedByString:@""]];
+}
 
 @end

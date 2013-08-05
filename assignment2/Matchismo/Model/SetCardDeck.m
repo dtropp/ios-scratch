@@ -15,23 +15,38 @@
   return @[@"▲",@"●",@"■"];
 }
 
++ (NSArray*) validColors {
+  return @[@"red",@"green",@"purple"];
+}
+
++ (NSUInteger) maxCount {
+  return 3;
+}
+
++ (NSArray*) validShading {
+  return @[@"solid", @"striped", @"open"];
+}
+
+
 - (id) init {
   self = [super init];
   if (self) {
-    for (int i = 0; i < 3; i++) {
-      for (NSString* shape in [self.class validShapes]) {
-        for (int count=1; count <= 3; count++) {
-          SetCard* card = [[SetCard alloc] initWithSymbol:shape
-                                                    count:count
-                                                    color:[UIColor redColor]
-                                                  shading:1.0];
-          [self addCard:card atTop:NO];
+    for (NSString* shape in [self.class validShapes]) {
+      for (NSString* shading in [self.class validShading]) {
+        for (NSString* color in [self.class validColors]) {
+          for (int count=1; count <= [self.class maxCount]; count++) {
+            SetCard* card = [[SetCard alloc] initWithSymbol:shape
+                                                      count:count
+                                                      color:color
+                                                    shading:shading];
+            [self addCard:card atTop:NO];
+          }
         }
       }
     }
+    NSLog(@"Returning deck: %@", self);
   }
   
-  NSLog(@"Returning deck: %@", self);
   return self;
 }
 

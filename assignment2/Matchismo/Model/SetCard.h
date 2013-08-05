@@ -10,9 +10,14 @@
 
 @interface SetCard : Card
 
+@property (strong, nonatomic) NSString* symbol;
+@property (nonatomic) NSUInteger count;
+@property (strong, nonatomic) NSString* color;
+@property (strong, nonatomic) NSString* shading;
+
 -(id) initWithSymbol:(NSString*) symbol
                count:(NSUInteger) count
-               color:(UIColor*)color
-             shading:(float)alpha;
+               color:(NSString *)color
+             shading:(NSString *)shading;
 
 @end
