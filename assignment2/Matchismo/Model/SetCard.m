@@ -9,6 +9,10 @@
 #import "SetCard.h"
 @interface SetCard()
 
+@property (strong, nonatomic) NSString* symbol;
+@property (nonatomic) NSUInteger count;
+
+
 @end
 
 @implementation SetCard
@@ -31,6 +35,14 @@
 - (NSString *)contents {
   NSArray* contents = @[self.shading, self.color, self.symbol];
   return [NSString stringWithFormat:@"%d%@.", self.count, [contents componentsJoinedByString:@""]];
+}
+
+- (NSString*) symbols {
+  NSMutableString* symbols = [NSMutableString stringWithCapacity:0];
+  for (int i=1; i <= self.count; i++) {
+    [symbols appendString:self.symbol];
+  }
+  return symbols;
 }
 
 @end

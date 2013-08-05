@@ -10,10 +10,10 @@
 
 @interface SetCard : Card
 
-@property (strong, nonatomic) NSString* symbol;
-@property (nonatomic) NSUInteger count;
 @property (strong, nonatomic) NSString* color;
 @property (strong, nonatomic) NSString* shading;
+
+- (NSString*) symbols;
 
 -(id) initWithSymbol:(NSString*) symbol
                count:(NSUInteger) count

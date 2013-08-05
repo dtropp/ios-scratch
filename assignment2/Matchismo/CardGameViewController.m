@@ -50,10 +50,9 @@
   NSLog(@"UpdateUI");
   for (UIButton *cardButton in self.cardButtons) {
     Card* card = [self.game cardAtIndex:[_cardButtons indexOfObject:cardButton]];
-    [self updateCard:card onto:cardButton];
-    cardButton.selected = card.isFaceUp;
     cardButton.enabled = !card.isUnplayable;
-    cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
+    cardButton.selected = card.isFaceUp;
+    [self updateCard:card onto:cardButton];
   }
   self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
 }
@@ -69,6 +68,7 @@
     [cardButton setImage:[UIImage imageNamed:@"cardback.png"] forState:UIControlStateNormal];
     [cardButton setTitle:nil forState:UIControlStateNormal];
   }
+  cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
 }
 
 - (CardMatchingGame*) game {

@@ -23,6 +23,4 @@
 
 @interface SetCardDeck : Deck
 
-+ (NSArray*) validShapes;
-
 @end

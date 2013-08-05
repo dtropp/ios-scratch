@@ -396,20 +396,20 @@
         <scene sceneID="HWG-9m-5dX">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="MTQ-1Q-9Sl" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="1ma-17-57O">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="viewControllers" id="K5F-ta-QuF"/>
                         <segue destination="9aa-Vz-TOB" kind="relationship" relationship="viewControllers" id="IHQ-p0-8Kk"/>
+                        <segue destination="2" kind="relationship" relationship="viewControllers" id="K5F-ta-QuF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ssv-iM-83I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-302" y="66"/>
+            <point key="canvasLocation" x="-314" y="60"/>
         </scene>
         <!--Set Game View Controller - Set-->
         <scene sceneID="j7T-9U-pWd">
