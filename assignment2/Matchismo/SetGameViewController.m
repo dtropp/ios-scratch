@@ -56,6 +56,17 @@
                                  attributes:stringAttributes];
     [cardButton setAttributedTitle:title forState:UIControlStateNormal];
     cardButton.alpha = [self alphaForShading:setCard.shading];
+    
+    if (card.isFaceUp) {
+      NSLog(@"Card is face up: %@", card);
+      //Normal config is used by all other states as default (ie. selected and disabled)
+      [cardButton setBackgroundColor:[UIColor lightGrayColor]];
+    } else {
+      NSLog(@"Card is face down: %@", card);
+      [cardButton setBackgroundColor:[UIColor whiteColor]];
+    }
+    cardButton.hidden = card.isUnplayable;
+
   }
 }
 
