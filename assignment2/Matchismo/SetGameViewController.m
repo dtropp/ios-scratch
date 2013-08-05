@@ -37,6 +37,10 @@
   return [[SetCardDeck alloc] init];
 }
 
+- (NSUInteger) cardsPerMatch {
+  return 3;
+}
+
 - (void)updateCard:(Card*) card onto:(UIButton*) cardButton {
   if ([card isKindOfClass:[SetCard class]]) {
     SetCard* setCard = (SetCard*) card;
@@ -46,10 +50,6 @@
     [stringAttributes setObject:[self colorForColorName:setCard.color] forKey:NSForegroundColorAttributeName];
     NSArray* fonts = [UIFont familyNames];
     NSLog(@"%@", fonts);
-//    UIFont* font = [UIFont fontWithName: size:20.0];
-//    [stringAttributes setObject:font forKey:NSFontAttributeName];
-    
-    
     
     NSAttributedString* title = [[NSAttributedString alloc]
                                  initWithString:setCard.symbols

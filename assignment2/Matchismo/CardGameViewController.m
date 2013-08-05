@@ -71,10 +71,16 @@
   cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
 }
 
+- (NSUInteger) cardsPerMatch {
+  return 2;
+}
+
 - (CardMatchingGame*) game {
   if (!_game) {
     NSLog(@"new game created");
-    _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self newDeck]];
+    _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                              usingDeck:[self newDeck]
+                                          cardsPerMatch:[self cardsPerMatch]];
   }
   return _game;
 }

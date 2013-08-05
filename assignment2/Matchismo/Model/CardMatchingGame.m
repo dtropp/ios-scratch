@@ -11,19 +11,23 @@
 @interface CardMatchingGame()
 @property (strong, nonatomic) NSMutableArray* cards;
 @property (nonatomic, readwrite) int score;
+@property (nonatomic) NSUInteger cardsPerMatch;
 
 @end
 
 @implementation CardMatchingGame
 
 - (id) initWithCardCount: (NSUInteger) cardCount
-               usingDeck: (Deck*) deck {
+               usingDeck: (Deck*) deck
+           cardsPerMatch:(NSUInteger) cardsPerMatch {
   self = [super init];
   if (self) {
+    _cardsPerMatch = cardsPerMatch;
+    _cards = [[NSMutableArray alloc] init];
     for (NSUInteger index = 0; index < cardCount; index++) {
       Card* card = [deck drawRandomCard];
       if (card) {
-        [self.cards addObject:card];
+        [_cards addObject:card];
       } else {
         self = nil;
         break;
@@ -36,7 +40,6 @@
 #define FLIP_COST 1
 #define MATCH_BONUS 4
 #define MISMATCH_PENALTY 2
-#define CARDS_PER_MATCH 2
 
 - (NSArray*) cardsAvailableToMatch {
   NSMutableArray* matchable = [[NSMutableArray alloc] init];
@@ -53,7 +56,7 @@
   if (!card.isUnplayable) {
     if (!card.isFaceUp) {
       NSArray* matchableCards = [self cardsAvailableToMatch];
-      if ( ([matchableCards count]+1) == CARDS_PER_MATCH) {
+      if ( ([matchableCards count]+1) == self.cardsPerMatch) {
         int matchScore = [card match:matchableCards];
         int flipScore = 0;
         if (matchScore) {
@@ -95,13 +98,6 @@
 
 - (Card*) cardAtIndex: (NSUInteger) index {
   return index < self.cards.count ? self.cards[index] :  nil;
-}
-
-
-
-- (NSMutableArray*) cards {
-  if (!_cards) _cards = [[NSMutableArray alloc] init];
-  return _cards;
 }
 
 
