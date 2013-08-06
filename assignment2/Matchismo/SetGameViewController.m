@@ -16,7 +16,7 @@
 
 @implementation SetGameViewController
 
-+ (NSString*) shapeForShape: (NSString*)shape shaded:(NSString*) shading {
+- (NSString*) shapeForShape: (NSString*)shape shaded:(NSString*) shading {
   if ([shading isEqualToString:@"open"]) {
     NSDictionary* openSymbols =  @{@"▲":@"△",@"●":@"○",@"■":@"□"};
     return [openSymbols objectForKey:shape];
@@ -27,17 +27,18 @@
 
 - (NSString*) cardShapes:(SetCard*) card {
   NSMutableString* shapes = [NSMutableString stringWithCapacity:0];
+  NSString* shadedShape = [self shapeForShape:card.shape shaded:card.shading];
   for (int i=1; i <= card.count; i++) {
-    [shapes appendString:[[self class] shapeForShape:card.shape shaded:card.shading]];
+    [shapes appendString:shadedShape];
   }
   return shapes;
 }
 
-- (UIColor*) colorForColorName:(NSString*) colorName {
+- (UIColor*) colorForColorName:(NSString*) colorName shaded:(NSString*)shading {
   NSDictionary* colorMap = @{@"red":[UIColor redColor],
                              @"green":[UIColor greenColor],
                              @"purple":[UIColor purpleColor]};
-  return [colorMap valueForKey:colorName];
+  return [[colorMap valueForKey:colorName] colorWithAlphaComponent:[self alphaForShading:shading]];
 }
 
 - (float) alphaForShading:(NSString*) shadingName {
@@ -64,13 +65,12 @@
 //    NSLog(@"SetCard: %d, %@, %@, %@", setCard.count, setCard.shape, setCard.shading, setCard.color);
     [cardButton setImage:nil forState:UIControlStateNormal];
     NSMutableDictionary* stringAttributes = [[NSMutableDictionary alloc] init];
-    [stringAttributes setObject:[self colorForColorName:setCard.color] forKey:NSForegroundColorAttributeName];
+    [stringAttributes setObject:[self colorForColorName:setCard.color shaded:setCard.shading] forKey:NSForegroundColorAttributeName];
     
     NSAttributedString* title = [[NSAttributedString alloc]
                                  initWithString:[self cardShapes:setCard]
                                  attributes:stringAttributes];
     [cardButton setAttributedTitle:title forState:UIControlStateNormal];
-    cardButton.alpha = [self alphaForShading:setCard.shading];
     
     if (card.isFaceUp) {
 //      NSLog(@"Card is face up: %@", card);

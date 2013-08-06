@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastActionLabel;
-@property (strong, nonatomic) NSString* lastAction;
+@property (strong, nonatomic) NSAttributedString* lastAction;
 
 - (void)updateCard:(Card*) card onto:(UIButton*) cardButton;
 
@@ -37,8 +37,8 @@
 - (IBAction)dealNewGame {
   self.game = nil;
   self.flipsCount = 0;
-  //Different message per game TODO
-  self.lastAction = [NSString stringWithFormat:@"New game matching %d %@ cards!", self.game.cardsPerMatch, self.game.deckType];
+  NSString* newGameAction = [NSString stringWithFormat:@"New game matching %d %@ cards!", self.game.cardsPerMatch, self.game.deckType];
+  self.lastAction = [[NSAttributedString alloc] initWithString:newGameAction];
   [self updateUI];
 }
 
@@ -89,14 +89,14 @@
   self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipsCount];
 }
 
-- (void) setLastAction:(NSString *)lastAction {
+- (void) setLastAction:(NSAttributedString *)lastAction {
   _lastAction = lastAction;
-  self.lastActionLabel.text = _lastAction;
+  self.lastActionLabel.attributedText = _lastAction;
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
   NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
-  self.lastAction = [self.game flipCardAtIndex:cardIndex];
+  self.lastAction = [[NSAttributedString alloc] initWithString:[self.game flipCardAtIndex:cardIndex]];
   [self updateUI];
   self.flipsCount++;
 }
