@@ -10,10 +10,6 @@
 
 @implementation Card
 
-+ (NSString*)stringFromCards:(NSArray*)cards {
-  return [cards componentsJoinedByString:@" & "];
-}
-
 - (int) match: (NSArray*)otherCards {
   int score = 0;
   for (Card *otherCard in otherCards) {
