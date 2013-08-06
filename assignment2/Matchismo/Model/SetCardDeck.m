@@ -12,11 +12,11 @@
 @implementation SetCardDeck
 
 + (NSArray*) validColors {
-  return @[@"▲",@"●",@"■"];
+  return @[@"red",@"green",@"purple"];
 }
 
 + (NSArray*) validShapes {
-  return @[@"red",@"green",@"purple"];
+  return @[@"▲",@"●",@"■"];
 }
 
 + (NSUInteger) maxCount {

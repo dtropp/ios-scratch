@@ -61,7 +61,7 @@
 - (void)updateCard:(Card*) card onto:(UIButton*) cardButton {
   if ([card isKindOfClass:[SetCard class]]) {
     SetCard* setCard = (SetCard*) card;
-//    NSLog(@"SetCard: %@, %@, %@", setCard.symbols, setCard.shading, setCard.color);
+//    NSLog(@"SetCard: %d, %@, %@, %@", setCard.count, setCard.shape, setCard.shading, setCard.color);
     [cardButton setImage:nil forState:UIControlStateNormal];
     NSMutableDictionary* stringAttributes = [[NSMutableDictionary alloc] init];
     [stringAttributes setObject:[self colorForColorName:setCard.color] forKey:NSForegroundColorAttributeName];

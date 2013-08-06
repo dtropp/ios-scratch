@@ -34,7 +34,7 @@
   return [NSString stringWithFormat:@"%d%@.", self.count, [contents componentsJoinedByString:@""]];
 }
 
-- (NSNumber*) countAsNumber {
+- (NSNumber*) countAsNSNumber {
   return [NSNumber numberWithInteger:self.count];
 }
 
@@ -56,7 +56,7 @@
       if ([self all3DifferentOrSame:@[self.color, firstCard.color, secondCard.color]] &&
           [self all3DifferentOrSame:@[self.shading, firstCard.shading, secondCard.shading]] &&
           [self all3DifferentOrSame:@[self.shape, firstCard.shape, secondCard.shape]] &&
-          [self all3DifferentOrSame:@[[self countAsNumber], [firstCard countAsNumber], [secondCard countAsNumber]]]) {
+          [self all3DifferentOrSame:@[[self countAsNSNumber], [firstCard countAsNSNumber], [secondCard countAsNSNumber]]]) {
         score = 10;
       }
     }
