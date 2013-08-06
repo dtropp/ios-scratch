@@ -19,6 +19,8 @@
 
 - (Card*) cardAtIndex: (NSUInteger) index;
 
+@property (nonatomic, readonly) NSString* deckType;
+@property (nonatomic, readonly) NSUInteger cardsPerMatch;
 @property (nonatomic, readonly) int score;
 
 @end

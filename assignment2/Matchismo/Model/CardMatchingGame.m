@@ -33,6 +33,7 @@
         break;
       }
     }
+    _deckType = deck.typeOfCard;
   }
   return self;
 }
@@ -65,9 +66,8 @@
           }
           card.unplayable = YES;
           flipScore = matchScore * MATCH_BONUS;
-          actionMessage = [NSString stringWithFormat:@"Matched %@ & %@ for %d points!",
-                           card.contents,
-                           [matchableCards componentsJoinedByString:@" & "],
+          actionMessage = [NSString stringWithFormat:@"Matched %@ for %d points!",
+                           [[card class] stringFromCards:[@[card] arrayByAddingObjectsFromArray:matchableCards]],
                            flipScore];
         } else {
           for (Card* otherCard in matchableCards) {

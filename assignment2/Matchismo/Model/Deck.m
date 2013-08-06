@@ -16,6 +16,10 @@
 
 @implementation Deck
 
+- (NSString*)typeOfCard {
+  return nil;
+}
+
 - (NSMutableArray*) cards {
   if (!_cards) {
     _cards = [[NSMutableArray alloc] init];

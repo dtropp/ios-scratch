@@ -26,4 +26,10 @@
   
   return self;
 }
+
+- (NSString*)typeOfCard {
+  return @"Playing";
+}
+
+
 @end

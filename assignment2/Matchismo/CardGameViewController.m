@@ -38,7 +38,7 @@
   self.game = nil;
   self.flipsCount = 0;
   //Different message per game TODO
-  self.lastAction = [NSString stringWithFormat:@"New game matching 2 playing cards!"];
+  self.lastAction = [NSString stringWithFormat:@"New game matching %d %@ cards!", self.game.cardsPerMatch, self.game.deckType];
   [self updateUI];
 }
 

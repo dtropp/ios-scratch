@@ -50,4 +50,9 @@
   return self;
 }
 
+- (NSString*)typeOfCard {
+  return @"Set";
+}
+
+
 @end
