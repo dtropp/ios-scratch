@@ -16,6 +16,23 @@
 
 @implementation SetGameViewController
 
++ (NSString*) shapeForShape: (NSString*)shape shaded:(NSString*) shading {
+  if ([shading isEqualToString:@"open"]) {
+    NSDictionary* openSymbols =  @{@"▲":@"△",@"●":@"○",@"■":@"□"};
+    return [openSymbols objectForKey:shape];
+  } else {
+    return shape;
+  }
+}
+
+- (NSString*) cardShapes:(SetCard*) card {
+  NSMutableString* shapes = [NSMutableString stringWithCapacity:0];
+  for (int i=1; i <= card.count; i++) {
+    [shapes appendString:[[self class] shapeForShape:card.shape shaded:card.shading]];
+  }
+  return shapes;
+}
+
 - (UIColor*) colorForColorName:(NSString*) colorName {
   NSDictionary* colorMap = @{@"red":[UIColor redColor],
                              @"green":[UIColor greenColor],
@@ -26,10 +43,10 @@
 - (float) alphaForShading:(NSString*) shadingName {
 
   NSDictionary* alphaMap = @{@"solid":@1.0,
-                             @"striped":@0.5,
+                             @"striped":@0.3,
                              @"open":@1.0};
   float alpha = [[alphaMap valueForKey:shadingName] floatValue];
-  NSLog(@"Alpha is %0.1f", alpha);
+//  NSLog(@"Alpha is %0.1f", alpha);
   return alpha;
 }
 
@@ -44,25 +61,23 @@
 - (void)updateCard:(Card*) card onto:(UIButton*) cardButton {
   if ([card isKindOfClass:[SetCard class]]) {
     SetCard* setCard = (SetCard*) card;
-    NSLog(@"SetCard: %@, %@, %@", setCard.symbols, setCard.shading, setCard.color);
+//    NSLog(@"SetCard: %@, %@, %@", setCard.symbols, setCard.shading, setCard.color);
     [cardButton setImage:nil forState:UIControlStateNormal];
     NSMutableDictionary* stringAttributes = [[NSMutableDictionary alloc] init];
     [stringAttributes setObject:[self colorForColorName:setCard.color] forKey:NSForegroundColorAttributeName];
-    NSArray* fonts = [UIFont familyNames];
-    NSLog(@"%@", fonts);
     
     NSAttributedString* title = [[NSAttributedString alloc]
-                                 initWithString:setCard.symbols
+                                 initWithString:[self cardShapes:setCard]
                                  attributes:stringAttributes];
     [cardButton setAttributedTitle:title forState:UIControlStateNormal];
     cardButton.alpha = [self alphaForShading:setCard.shading];
     
     if (card.isFaceUp) {
-      NSLog(@"Card is face up: %@", card);
+//      NSLog(@"Card is face up: %@", card);
       //Normal config is used by all other states as default (ie. selected and disabled)
       [cardButton setBackgroundColor:[UIColor lightGrayColor]];
     } else {
-      NSLog(@"Card is face down: %@", card);
+//      NSLog(@"Card is face down: %@", card);
       [cardButton setBackgroundColor:[UIColor whiteColor]];
     }
     cardButton.hidden = card.isUnplayable;

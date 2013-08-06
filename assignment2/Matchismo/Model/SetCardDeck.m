@@ -11,14 +11,11 @@
 
 @implementation SetCardDeck
 
-+ (NSArray*) validShapesForShading: (NSString*)shading {
-  NSDictionary* shapesForShadingDict =  @{@"solid":@[@"▲",@"●",@"■"],
-           @"striped":@[@"▲",@"●",@"■"],
-           @"open":@[@"△",@"○",@"□"]};
-  return [shapesForShadingDict objectForKey:shading];
++ (NSArray*) validColors {
+  return @[@"▲",@"●",@"■"];
 }
 
-+ (NSArray*) validColors {
++ (NSArray*) validShapes {
   return @[@"red",@"green",@"purple"];
 }
 
@@ -35,10 +32,10 @@
   self = [super init];
   if (self) {
     for (NSString* shading in [self.class validShading]) {
-      for (NSString* shape in [self.class validShapesForShading:shading]) {
+      for (NSString* shape in [self.class validShapes]) {
         for (NSString* color in [self.class validColors]) {
           for (int count=1; count <= [self.class maxCount]; count++) {
-            SetCard* card = [[SetCard alloc] initWithSymbol:shape
+            SetCard* card = [[SetCard alloc] initWithShape:shape
                                                       count:count
                                                       color:color
                                                     shading:shading];

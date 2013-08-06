@@ -12,10 +12,10 @@
 
 @property (strong, nonatomic) NSString* color;
 @property (strong, nonatomic) NSString* shading;
+@property (strong, nonatomic) NSString* shape;
+@property (nonatomic) NSUInteger count;
 
-- (NSString*) symbols;
-
--(id) initWithSymbol:(NSString*) symbol
+-(id) initWithShape:(NSString*) shape
                count:(NSUInteger) count
                color:(NSString *)color
              shading:(NSString *)shading;

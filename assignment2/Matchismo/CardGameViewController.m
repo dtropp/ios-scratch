@@ -47,7 +47,6 @@
 }
 
 - (void)updateUI {
-  NSLog(@"UpdateUI");
   for (UIButton *cardButton in self.cardButtons) {
     Card* card = [self.game cardAtIndex:[_cardButtons indexOfObject:cardButton]];
     cardButton.enabled = !card.isUnplayable;
