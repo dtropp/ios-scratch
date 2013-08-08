@@ -20,7 +20,7 @@
 - (id) initWithCardCount: (NSUInteger) cardCount
                usingDeck: (Deck*) deck
                 withCardsPerMatch:(NSUInteger)count {
-  self = [super init];
+  self = [self init];
   if (self) {
     self.cardsPerMatch = count;
     for (NSUInteger index = 0; index < cardCount; index++) {

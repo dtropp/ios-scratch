@@ -41,7 +41,7 @@
 }
 
 - (IBAction)dealNewGame {
-  _game = nil;
+  self.game = nil;
   self.flipsCount = 0;
   self.lastAction = [NSString stringWithFormat:@"New game matching %d cards!", self.gameType];
   self.gameTypeControl.enabled = YES;

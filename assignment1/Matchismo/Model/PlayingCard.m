@@ -42,7 +42,7 @@
 }
 
 - (NSString*) suit {
-  return _suit ? _suit : @"?";
+  return _suit ?: @"?";
 }
 
 + (NSArray*) validSuits {
