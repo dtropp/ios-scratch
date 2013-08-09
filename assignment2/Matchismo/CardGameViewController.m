@@ -9,6 +9,7 @@
 #import "CardGameViewController.h"
 #import "CardMatchingGame.h"
 #import "Deck.h"
+#import "FlipResult.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
@@ -96,7 +97,8 @@
 
 - (IBAction)flipCard:(UIButton *)sender {
   NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
-  self.lastAction = [[NSAttributedString alloc] initWithString:[self.game flipCardAtIndex:cardIndex]];
+  FlipResult* result = [self.game flipCardAtIndex:cardIndex];
+  self.lastAction = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"Flip score is %d", result.score]];
   [self updateUI];
   self.flipsCount++;
 }

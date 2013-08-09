@@ -50,14 +50,15 @@
   return matchable;
 }
 
-- (NSString*) flipCardAtIndex: (NSUInteger) index {
+- (FlipResult*) flipCardAtIndex: (NSUInteger) index {
   Card* card = [self cardAtIndex:index];
-  NSString* actionMessage = nil;
+  FlipResult* result = [[FlipResult alloc] initWithCard:card];
   
   if (!card.isUnplayable) {
     if (!card.isFaceUp) {
       NSArray* matchableCards = [self cardsAvailableToMatch];
       if ( ([matchableCards count]+1) == self.cardsPerMatch) {
+        [result.cards addObjectsFromArray:matchableCards];
         int matchScore = [card match:matchableCards];
         int flipScore = 0;
         if (matchScore) {
@@ -65,29 +66,29 @@
             otherCard.unplayable = YES;
           }
           card.unplayable = YES;
-          flipScore = matchScore * MATCH_BONUS;
-          actionMessage = [NSString stringWithFormat:@"Matched %d cards for %d points!", self.cardsPerMatch, flipScore];
+          result.score = matchScore * MATCH_BONUS;
+//          actionMessage = [NSString stringWithFormat:@"Matched %d cards for %d points!", self.cardsPerMatch, flipScore];
         } else {
           for (Card* otherCard in matchableCards) {
             otherCard.faceUp = NO;
           }
-          flipScore = -(MISMATCH_PENALTY);
-          actionMessage = [NSString stringWithFormat:@"No match for chosen %d cards! Penalty of %d points!", self.cardsPerMatch, flipScore];
+          result.score = -(MISMATCH_PENALTY);
+//          actionMessage = [NSString stringWithFormat:@"No match for chosen %d cards! Penalty of %d points!", self.cardsPerMatch, flipScore];
         }
         self.score += flipScore;
       }
       self.score -= FLIP_COST;
-      if (!actionMessage) {
-        actionMessage = [NSString stringWithFormat:@"Turned up %d cards.", ([matchableCards count]+1)];
-      }
+//      if (!actionMessage) {
+//        actionMessage = [NSString stringWithFormat:@"Turned up %d cards.", ([matchableCards count]+1)];
+//      }
     }
     else {
-      actionMessage = [NSString stringWithFormat:@"Turned card back down."];
+//      actionMessage = [NSString stringWithFormat:@"Turned card back down."];
     }
     card.faceUp = !card.isFaceUp;
   }
   
-  return actionMessage;
+  return result;
 }
 
 

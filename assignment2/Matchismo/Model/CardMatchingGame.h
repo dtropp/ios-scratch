@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Deck.h"
+#import "FlipResult.h"
 
 @interface CardMatchingGame : NSObject
 
@@ -15,7 +16,7 @@
                usingDeck: (Deck*) deck
            cardsPerMatch:(NSUInteger) cardsPerMatch;
 
-- (NSString*) flipCardAtIndex: (NSUInteger) index;
+- (FlipResult*) flipCardAtIndex: (NSUInteger) index;
 
 - (Card*) cardAtIndex: (NSUInteger) index;
 
