@@ -95,6 +95,10 @@
   self.lastActionLabel.attributedText = _lastAction;
 }
 
+- (NSAttributedString*) formatCards:(NSArray*)cards {
+  return [[NSAttributedString alloc] initWithString:[cards componentsJoinedByString:@" & "]];
+}
+
 - (NSAttributedString*) flipMessage:(FlipResult*)flipResult {
   NSString* message;
   if (flipResult.isMatch)
@@ -106,7 +110,9 @@
     Card* card = flipResult.cards[0];
     message = [NSString stringWithFormat:@"Flipped %@ ", (card.isFaceUp ? @"up" : @"down")];
   }
-  return [[NSAttributedString alloc] initWithString:message];
+  NSMutableAttributedString* messageWithCards = [[NSMutableAttributedString alloc] initWithString:message];
+  [messageWithCards appendAttributedString:[self formatCards:flipResult.cards]];
+  return messageWithCards;
 }
 
 - (IBAction)flipCard:(UIButton *)sender {

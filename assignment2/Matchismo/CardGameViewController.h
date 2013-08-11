@@ -12,5 +12,11 @@
 @interface CardGameViewController : UIViewController
 
 - (Deck*) newDeck;
+- (NSAttributedString*) formatCards:(NSArray*)cards;
+- (NSUInteger) cardsPerMatch;
+- (void)updateCard:(Card*) card onto:(UIButton*) cardButton;
+
+//Q Can you have abstract super classes?
+//Q Should you put overriden methods in the public interface?
 
 @end

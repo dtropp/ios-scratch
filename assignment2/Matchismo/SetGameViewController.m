@@ -59,25 +59,37 @@
   return 3;
 }
 
+- (NSAttributedString*) formatCards:(NSArray*)cards {
+  NSMutableAttributedString* cardString = [[NSMutableAttributedString alloc] init];
+  NSAttributedString* joiner = [[NSAttributedString alloc] initWithString:@" & "];
+  for (SetCard* setCard in cards) {
+    [cardString appendAttributedString:[self formatCard:setCard]];
+    if (setCard != [cards lastObject]) {
+      [cardString appendAttributedString:joiner];
+    }
+  }
+  return cardString;
+}
+
+- (NSAttributedString*) formatCard:(SetCard*) setCard {
+  NSMutableDictionary* stringAttributes = [[NSMutableDictionary alloc] init];
+  [stringAttributes setObject:[self colorForColorName:setCard.color shaded:setCard.shading] forKey:NSForegroundColorAttributeName];
+  
+  return [[NSAttributedString alloc] initWithString:[self cardShapes:setCard]
+                                         attributes:stringAttributes];
+}
+
 - (void)updateCard:(Card*) card onto:(UIButton*) cardButton {
   if ([card isKindOfClass:[SetCard class]]) {
     SetCard* setCard = (SetCard*) card;
-//    NSLog(@"SetCard: %d, %@, %@, %@", setCard.count, setCard.shape, setCard.shading, setCard.color);
     [cardButton setImage:nil forState:UIControlStateNormal];
-    NSMutableDictionary* stringAttributes = [[NSMutableDictionary alloc] init];
-    [stringAttributes setObject:[self colorForColorName:setCard.color shaded:setCard.shading] forKey:NSForegroundColorAttributeName];
     
-    NSAttributedString* title = [[NSAttributedString alloc]
-                                 initWithString:[self cardShapes:setCard]
-                                 attributes:stringAttributes];
-    [cardButton setAttributedTitle:title forState:UIControlStateNormal];
+    [cardButton setAttributedTitle:[self formatCard:setCard] forState:UIControlStateNormal];
     
     if (card.isFaceUp) {
-//      NSLog(@"Card is face up: %@", card);
       //Normal config is used by all other states as default (ie. selected and disabled)
       [cardButton setBackgroundColor:[UIColor lightGrayColor]];
     } else {
-//      NSLog(@"Card is face down: %@", card);
       [cardButton setBackgroundColor:[UIColor whiteColor]];
     }
     cardButton.hidden = card.isUnplayable;
