@@ -67,23 +67,15 @@
           }
           card.unplayable = YES;
           result.score = matchScore * MATCH_BONUS;
-//          actionMessage = [NSString stringWithFormat:@"Matched %d cards for %d points!", self.cardsPerMatch, flipScore];
         } else {
           for (Card* otherCard in matchableCards) {
             otherCard.faceUp = NO;
           }
           result.score = -(MISMATCH_PENALTY);
-//          actionMessage = [NSString stringWithFormat:@"No match for chosen %d cards! Penalty of %d points!", self.cardsPerMatch, flipScore];
         }
         self.score += flipScore;
       }
       self.score -= FLIP_COST;
-//      if (!actionMessage) {
-//        actionMessage = [NSString stringWithFormat:@"Turned up %d cards.", ([matchableCards count]+1)];
-//      }
-    }
-    else {
-//      actionMessage = [NSString stringWithFormat:@"Turned card back down."];
     }
     card.faceUp = !card.isFaceUp;
   }

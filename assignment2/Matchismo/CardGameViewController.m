@@ -95,10 +95,24 @@
   self.lastActionLabel.attributedText = _lastAction;
 }
 
+- (NSAttributedString*) flipMessage:(FlipResult*)flipResult {
+  NSString* message;
+  if (flipResult.isMatch)
+  {
+    message = @"Score! Matched ";
+  } else if (flipResult.isMismatch) {
+    message = @"Penalty! No match for ";
+  } else { //Card flip only
+    Card* card = flipResult.cards[0];
+    message = [NSString stringWithFormat:@"Flipped %@ ", (card.isFaceUp ? @"up" : @"down")];
+  }
+  return [[NSAttributedString alloc] initWithString:message];
+}
+
 - (IBAction)flipCard:(UIButton *)sender {
   NSUInteger cardIndex = [self.cardButtons indexOfObject:sender];
   FlipResult* result = [self.game flipCardAtIndex:cardIndex];
-  self.lastAction = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"Flip score is %d", result.score]];
+  self.lastAction = [self flipMessage:result];
   [self updateUI];
   self.flipsCount++;
 }
