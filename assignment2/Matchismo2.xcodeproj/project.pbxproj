@@ -30,6 +30,8 @@
 		37B549D2179CBA010091BBCD /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B549D1179CBA010091BBCD /* CardMatchingGame.m */; };
 		37B549D9179F36BA0091BBCD /* cardback.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B549D8179F36BA0091BBCD /* cardback.png */; };
 		37CB054E17B4909A0000C2DD /* FlipResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CB054D17B4909A0000C2DD /* FlipResult.m */; };
+		37CB055517B865FC0000C2DD /* playingCardIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CB055317B865FC0000C2DD /* playingCardIcon.png */; };
+		37CB055617B865FC0000C2DD /* setIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CB055417B865FC0000C2DD /* setIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		37B549D8179F36BA0091BBCD /* cardback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardback.png; sourceTree = "<group>"; };
 		37CB054C17B4909A0000C2DD /* FlipResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipResult.h; path = Model/FlipResult.h; sourceTree = "<group>"; };
 		37CB054D17B4909A0000C2DD /* FlipResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipResult.m; path = Model/FlipResult.m; sourceTree = "<group>"; };
+		37CB055317B865FC0000C2DD /* playingCardIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playingCardIcon.png; path = ../playingCardIcon.png; sourceTree = "<group>"; };
+		37CB055417B865FC0000C2DD /* setIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = setIcon.png; path = ../setIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,8 @@
 		37B549A7179C98BB0091BBCD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				37CB055317B865FC0000C2DD /* playingCardIcon.png */,
+				37CB055417B865FC0000C2DD /* setIcon.png */,
 				3762201017A7A6650097F65E /* Princess Square.gif */,
 				3762200E17A7A0760097F65E /* Matchismo2-Info.plist */,
 				37B549D8179F36BA0091BBCD /* cardback.png */,
@@ -230,6 +236,8 @@
 				37B549BA179C98BB0091BBCD /* MainStoryboard.storyboard in Resources */,
 				37B549D9179F36BA0091BBCD /* cardback.png in Resources */,
 				3762201117A7A6650097F65E /* Princess Square.gif in Resources */,
+				37CB055517B865FC0000C2DD /* playingCardIcon.png in Resources */,
+				37CB055617B865FC0000C2DD /* setIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
